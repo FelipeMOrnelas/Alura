@@ -1,4 +1,31 @@
 import random
+import os
+import Jogos
+
+def nivel(niveis):
+    while niveis == 0:
+        print("Antes defina o nível do jogo!")
+        print("(1)Fácil  (2)Normal  (3)Difícil")
+        nivel = input("Escolha: ")
+
+        if nivel.isnumeric():
+            nivel = int(nivel)
+            if nivel == 1:
+                tentativas = 20
+                break
+            elif nivel == 2:
+                tentativas = 10
+                niveis = 1
+            elif nivel == 3:
+                tentativas = 5
+                break
+            else:
+                input("\nOpção Inválida!")
+                os.system("cls")
+        else:
+            input("\nVocê não digitou o número correspondente das opções!")
+            os.system("cls")
+    return tentativas
 
 def start_adivinhacao():
     escolha = 1
@@ -14,26 +41,7 @@ def start_adivinhacao():
         print("Bem vindo ao jogo de Adivinhação!")
         print("*********************************")
 
-        while niveis == 0:
-            print("Antes defina o nível do jogo!")
-            print("(1)Fácil  (2)Normal  (3)Difícil")
-            nivel = input("Escolha: ")
-
-            if nivel.isnumeric():
-                nivel = int(nivel)
-                if nivel == 1:
-                    tentativas = 20
-                    break
-                elif nivel == 2:
-                    tentativas = 10
-                    niveis = 1
-                elif nivel == 3:
-                    tentativas = 5
-                    break
-                else:
-                    print("Opção Inválida!")
-            else:
-                print("Você não digitou o número correspondente das opções!")
+        tentativas = nivel(niveis)
 
 
         while rodadas < tentativas:
@@ -84,7 +92,8 @@ def start_adivinhacao():
                     break
                 elif opcoes == 2:
                     escolha = 2
-                    break
+                    os.system("cls")
+                    Jogos.escolha_jogo()
                 else:
                     print("Opção Inválida!")
 
